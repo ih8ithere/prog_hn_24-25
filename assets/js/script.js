@@ -16,3 +16,36 @@ function exercice4() {
     });
     document.getElementById("exercice4Resultat").appendChild(table);
 }
+
+window.onload = function () {
+    let fileInput = document.getElementById('fileInput');
+    let fileDisplayArea = document.getElementById('fileDisplayArea');
+    let segmentButton = document.getElementById('segmentButton');
+    let analyseOutput = document.getElementById('page-analysis');
+
+    fileInput.addEventListener('change', function(e) {
+        let file = fileInput.files[0];
+        let textType = new RegExp("text.*");
+
+        if (file.type.match(textType)) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                fileDisplayArea.innerText = reader.result;
+            }
+            reader.readAsText(file);
+
+            document.getElementById("logger").innerHTML = '<span class="infolog">Fichier chargé avec succès</span>';
+        } else {
+            fileDisplayArea.innerText = "";
+            document.getElementById("logger").innerHTML = '<span class="errorlog">Type de fichier non supporté !</span>';
+        }
+    });
+    segmentButton.addEventListener('click', function() {
+        let text = fileDisplayArea.innerText;
+        let cleanedText = text.replace(/\s+/g, ' ').replace(/\n/g, ' ');
+        let words = cleanedText.split(' ');
+        let result = words.join(',');
+        analyseOutput.innerText = result;
+    });
+};
