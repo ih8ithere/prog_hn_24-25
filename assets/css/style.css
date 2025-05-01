@@ -66,13 +66,13 @@ h2 {
 	background: #FFF;
 	font-size:0.6em;
 	height:200px;
-	overflow:scroll;
+	overflow:visible;
 }
 #Global #page-analysis {
 	margin-left:52%;
 	background: #FFF;
 	height:200px;
-	overflow:scroll;
+	overflow:visible;
 }
 .mylabel {
 	background-color: rgb(255, 204, 51);
